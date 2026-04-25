@@ -1,0 +1,119 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-25T05:17:00.038Z",
+    "end": "2026-04-25T05:17:01.061Z",
+    "duration": 1023,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7e7c7eb1-c2e8-4143-895d-3e1c3982ea03",
+      "title": "",
+      "fullFile": "C:\\Learn\\Tugas-DigitalSkola\\DigitalSkola-Task\\Sesi9\\ui-test\\sess9.js",
+      "file": "\\ui-test\\sess9.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "407d16e1-02ba-40a5-88b6-44108778c454",
+          "title": "SauceDemo Testing",
+          "fullFile": "C:\\Learn\\Tugas-DigitalSkola\\DigitalSkola-Task\\Sesi9\\ui-test\\sess9.js",
+          "file": "\\ui-test\\sess9.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Login to SauceDemo",
+              "fullTitle": "SauceDemo Testing Login to SauceDemo",
+              "timedOut": false,
+              "duration": 923,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const options = new chrome.Options();\noptions.addArguments('--incognito');\ndriver = await new Builder()\n    .forBrowser('chrome')\n    .setChromeOptions(options)\n    .build();\n    await driver.get('https://www.saucedemo.com');\n    assert.strictEqual(await driver.getTitle(), 'Swag Labs');\n    const inputUsername = await driver.findElement(\n        By.xpath('//*[@data-test=\"username\"]')\n    );\n    const inputPassword = await driver.findElement(\n        By.xpath('//*[@data-test=\"password\"]')\n    );\n    const buttonLogin = await driver.findElement(\n        By.xpath('//*[@data-test=\"login-button\"]')\n    );\n    await inputUsername.sendKeys('standard_user');\n    await inputPassword.sendKeys('secret_sauce');\n    await buttonLogin.click();\n    const cartLink = await driver.wait(\n        until.elementLocated(By.xpath('//*[@data-test=\"shopping-cart-link\"]')),\n        10000\n    );\n    await driver.wait(until.elementIsVisible(cartLink), 5000);\n    assert.ok(await cartLink.isDisplayed(), 'After login, shopping cart link must be visible');\n    const hamBut = await driver.wait(\n        until.elementLocated(By.xpath('//*[@id=\"react-burger-menu-btn\"]')), 5000\n    );\n    await driver.wait(until.elementIsVisible(hamBut), 5000);\n    assert.ok(await hamBut.isDisplayed(), 'Hamburger Button is visible');",
+              "err": {},
+              "uuid": "5eadb61f-ed3c-42d0-8e0c-36273360674c",
+              "parentUUID": "407d16e1-02ba-40a5-88b6-44108778c454",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Change SauceDemo Filter Z-A",
+              "fullTitle": "SauceDemo Testing Change SauceDemo Filter Z-A",
+              "timedOut": false,
+              "duration": 98,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// await login(driver);\nconst firstDiv = await driver.wait(\n        until.elementLocated(By.xpath('//*[@id=\"inventory_container\"]/div/div[1]')), 5000\n    );\n\nconst firstItemName = await firstDiv.getText();\nassert.ok(firstItemName.includes('Sauce Labs Backpack'), 'Before Filter is correct');\nconst pickFilter = await driver.findElement(\n    By.xpath('//*[@id=\"header_container\"]/div[2]/div/span/select')\n);\nconst filterOption = await driver.findElement(\n    By.xpath('//*[@id=\"header_container\"]/div[2]/div/span/select/option[2]')\n);\nawait pickFilter.click();\nawait filterOption.click();\nconst filteredName = await firstDiv.getText();\nassert.ok(filteredName.includes('Test.allTheThings() T-Shirt (Red)'), 'After Filter is correct');",
+              "err": {},
+              "uuid": "40c3a322-e19e-4792-97a4-ac1088ef429a",
+              "parentUUID": "407d16e1-02ba-40a5-88b6-44108778c454",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5eadb61f-ed3c-42d0-8e0c-36273360674c",
+            "40c3a322-e19e-4792-97a4-ac1088ef429a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1021,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 60000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}
